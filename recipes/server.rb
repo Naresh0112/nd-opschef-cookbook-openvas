@@ -90,6 +90,11 @@ case node['platform']
 
 #end
 
+# Create gsad init script symlink
+link "/etc/init.d/gsad" do
+  to "/etc/init.d/greenbone-security-assistant"
+end
+
 cookbook_file "/usr/local/bin/openvas-check-setup" do
   source "openvas-check-setup"
   mode "0744"
@@ -247,7 +252,7 @@ template "/etc/openvas/openvassd.conf" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :reload, "service[openvas-scanner]", :immediately
+  notifies :restart, "service[openvas-scanner]", :immediately
 end
 
 # Add template for /etc/openvas/openvassd.rules
@@ -256,7 +261,7 @@ template "/etc/openvas/openvassd.rules" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :reload, "service[openvas-scanner]", :immediately
+  notifies :restart, "service[openvas-scanner]", :immediately
 end
 
 # Check if Greenbone scan configs are enable
