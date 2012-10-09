@@ -19,7 +19,7 @@ if node['platform'] == 'debian' or node['platform'] == 'ubuntu' or node['platfor
 
 # Add OpenVAS PPA. Get key from keyserver
 apt_repository "openvas-repo" do
-  uri "http://download.opensuse.org/repositories/security:/OpenVAS:/STABLE:/v4/xUbuntu_11.10/ ./"
+  uri "http://download.opensuse.org/repositories/security:/OpenVAS:/UNSTABLE:/v5/xUbuntu_12.04/ ./"
   keyserver "hkp://keys.gnupg.net"
   key "BED1E87979EAFD54"
   action :add
